@@ -49,21 +49,21 @@ public class World {
 					}
 					else if (pixelAtual == 0xFFFF0000) {
 						// Inimigo
-						Enemy enemy = new Enemy(xx * 16, yy * 16, 16, 16, Entity.ENEMY_EN);
+						Enemy enemy = new Enemy(xx * 16, yy * 16, 16, 16);
 						Game.entities.add(enemy);
 						Game.enemies.add(enemy);
 					}
 					else if (pixelAtual == 0xFF00FFFF) {
 						// Arma
-						Game.entities.add(new Weapon(xx * 16, yy * 16, 16, 16, Entity.WEAPON_EN));
+						Game.entities.add(new Weapon(xx * 16, yy * 16, 16, 16));
 					}
 					else if (pixelAtual == 0xFF00FF00) {
 						// Vida
-						Game.entities.add(new Lifepack(xx * 16, yy * 16, 16, 16, Entity.LIFEPACK_EN));
+						Game.entities.add(new Lifepack(xx * 16, yy * 16, 16, 16));
 					}
 					else if (pixelAtual == 0xFFFFFF00) {
 						// Munição
-						Game.entities.add(new Bullet(xx * 16, yy * 16, 16, 16, Entity.BULLET_EN));
+						Game.entities.add(new Bullet(xx * 16, yy * 16, 16, 16));
 					}
 				}
 			}	

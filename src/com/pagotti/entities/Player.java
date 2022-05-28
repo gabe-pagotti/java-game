@@ -12,6 +12,12 @@ import com.pagotti.world.World;
 
 public class Player extends Entity {
 	
+	final static BufferedImage GUN_RIGHT_SPRITE = Game.spritesheet.getSprite(128, 0, 16, 16);
+	final static BufferedImage GUN_LEFT_SPRITE = Game.spritesheet.getSprite(128+16, 0, 16, 16);
+
+	final static BufferedImage GUN_DAMAGE_RIGHT_SPRITE = Game.spritesheet.getSprite(0, 2*16, 16, 16);
+	final static BufferedImage GUN_DAMAGE_LEFT_SPRITE = Game.spritesheet.getSprite(1*16, 2*16, 16, 16);
+	
 	public boolean right, up, left, down;
 	public int right_dir = 0, left_dir = 1, dir = right_dir;
 	public double speed = 1.6;
@@ -152,7 +158,7 @@ public class Player extends Entity {
 			Entity e = Game.entities.get(i);
 			if(e instanceof Bullet) {
 				if(Entity.isColliding(this, e)) {
-					ammo += 10;
+					ammo += 30;
 					Game.entities.remove(i);
 					return;
 				}
@@ -184,9 +190,9 @@ public class Player extends Entity {
 			g.fillOval(this.getX() - Camera.x, this.getY() - Camera.y, this.z/2, this.z/2);
 			if(hasGun) {
 				if(dir == left_dir) {
-					g.drawImage(Entity.GUN_DAMAGE_LEFT, this.getX() - Camera.x - 8, this.getY() - Camera.y - this.z, null);
+					g.drawImage(GUN_DAMAGE_LEFT_SPRITE, this.getX() - Camera.x - 8, this.getY() - Camera.y - this.z, null);
 				} else {
-					g.drawImage(Entity.GUN_DAMAGE_RIGHT, this.getX() - Camera.x + 8, this.getY() - Camera.y - this.z, null);
+					g.drawImage(GUN_DAMAGE_RIGHT_SPRITE, this.getX() - Camera.x + 8, this.getY() - Camera.y - this.z, null);
 				}
 			}
 			return;
@@ -195,13 +201,13 @@ public class Player extends Entity {
 		if(this.dir == this.right_dir) {
 			g.drawImage(rightPlayer[this.index], this.getX() - Camera.x, this.getY() - Camera.y - this.z, null);
 			if(hasGun) {
-				g.drawImage(Entity.GUN_RIGHT, this.getX() - Camera.x + 8, this.getY() - Camera.y - this.z, null);
+				g.drawImage(GUN_RIGHT_SPRITE, this.getX() - Camera.x + 8, this.getY() - Camera.y - this.z, null);
 			}
 		}
 		else if(this.dir == this.left_dir) {
 			g.drawImage(leftPlayer[this.index], this.getX() - Camera.x, this.getY() - Camera.y - this.z, null);
 			if(hasGun) {
-				g.drawImage(Entity.GUN_LEFT, this.getX() - Camera.x - 8, this.getY() - Camera.y - this.z, null);
+				g.drawImage(GUN_LEFT_SPRITE, this.getX() - Camera.x - 8, this.getY() - Camera.y - this.z, null);
 			}
 		}
 		

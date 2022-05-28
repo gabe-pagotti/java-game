@@ -18,9 +18,11 @@ public class Enemy extends Entity {
 	private int life = 2;
 	private boolean isDamaged = false;
 	private int damageFrames = 10, damageCurrent = 0;
+
+	final static BufferedImage DAMAGE_SPRITE = Game.spritesheet.getSprite(9*16, 16, 16, 16);
 	
-	public Enemy(int x, int y, int width, int height, BufferedImage sprite) {
-		super(x, y, width, height, null);
+	public Enemy(int x, int y, int width, int height) {
+		super(x, y, width, height);
 		sprites = new BufferedImage[2];
 		sprites[0] = Game.spritesheet.getSprite(112, 16, 16, 16);
 		sprites[1] = Game.spritesheet.getSprite(112+16, 16, 16, 16);
@@ -146,7 +148,7 @@ public class Enemy extends Entity {
 		}
 		
 		
-		g.drawImage(Entity.ENEMY_FEEDBACK, this.getX() - Camera.x, this.getY() - Camera.y, null);
+		g.drawImage(DAMAGE_SPRITE, this.getX() - Camera.x, this.getY() - Camera.y, null);
 	}
 
 }

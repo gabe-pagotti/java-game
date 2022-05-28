@@ -4,21 +4,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import com.pagotti.main.Game;
 import com.pagotti.world.Camera;
 
 public class Entity {
-	
-	public static BufferedImage LIFEPACK_EN = Game.spritesheet.getSprite(6*16, 0, 16, 16);
-	public static BufferedImage WEAPON_EN = Game.spritesheet.getSprite(7*16, 0, 16, 16);
-	public static BufferedImage BULLET_EN = Game.spritesheet.getSprite(6*16, 16, 16, 16);
-	public static BufferedImage ENEMY_EN = Game.spritesheet.getSprite(7*16, 16, 16, 16);
-	public static BufferedImage ENEMY_FEEDBACK = Game.spritesheet.getSprite(9*16, 16, 16, 16);
-	public static BufferedImage GUN_RIGHT = Game.spritesheet.getSprite(128, 0, 16, 16);
-	public static BufferedImage GUN_LEFT = Game.spritesheet.getSprite(128+16, 0, 16, 16);	
-	public static BufferedImage GUN_DAMAGE_RIGHT = Game.spritesheet.getSprite(0, 2*16, 16, 16);
-	public static BufferedImage GUN_DAMAGE_LEFT = Game.spritesheet.getSprite(1*16, 2*16, 16, 16);
-	
 	protected double x;
 	protected double y;
 	public int z = 0;
@@ -27,6 +15,18 @@ public class Entity {
 	
 	private BufferedImage sprite;
 	private int maskx, masky, mwidth, mheight;
+	
+	public Entity(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		
+		this.maskx = 0;
+		this.masky = 0;
+		this.mwidth = width;
+		this.mheight = height;
+	}
 	
 	public Entity(int x, int y, int width, int height, BufferedImage sprite) {
 		this.x = x;

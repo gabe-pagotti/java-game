@@ -2,10 +2,14 @@ package com.pagotti.entities;
 
 import java.awt.image.BufferedImage;
 
+import com.pagotti.main.Game;
+
 public class Bullet extends Entity {
 
-	public Bullet(int x, int y, int width, int height, BufferedImage sprite) {
-		super(x, y, width, height, sprite);
+	final static BufferedImage SPRITE = Game.spritesheet.getSprite(6*16, 16, 16, 16);
+	
+	public Bullet(int x, int y, int width, int height) {
+		super(x, y, width, height, SPRITE);
 	}
 
 }
