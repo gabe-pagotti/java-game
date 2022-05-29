@@ -24,16 +24,18 @@ public class Enemy extends Entity {
 	public Enemy(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		sprites = new BufferedImage[2];
-		sprites[0] = Game.spritesheet.getSprite(112, 16, 16, 16);
-		sprites[1] = Game.spritesheet.getSprite(112+16, 16, 16, 16);
+		sprites[0] = Game.spritesheet.getSprite(7*16, 16, 16, 16);
+		sprites[1] = Game.spritesheet.getSprite(8*16, 16, 16, 16);
 	}
 	
-	public void tick() {		
+	public void tick() {
+		updateFrames();
+		
 		int nextX = (int) (x+speed);
 		int previousX =  (int) (x-speed);
 		int nextY = (int) (y+speed);
 		int previousY =  (int) (y-speed);
-			
+		
 		if(this.isCollidingWithPlayer()) {
 			if(Game.rand.nextInt(100) < 10) {
 				Sound.hurtEffect.play();
@@ -66,15 +68,6 @@ public class Enemy extends Entity {
 			y = previousY;
 		}
 		
-		this.frames++;
-		if(this.frames == this.maxFrames) {
-			this.frames = 0;
-			this.index++;
-			if(this.index > this.maxIndex) {
-				this.index = 0;
-			}
-		}
-		
 		collidingBullet();
 		
 		if(life <= 0) {
@@ -96,6 +89,17 @@ public class Enemy extends Entity {
 		Game.entities.remove(this);
 	}
 	
+	protected void updateFrames() {
+		this.frames++;
+		if(this.frames == this.maxFrames) {
+			this.frames = 0;
+			this.index++;
+			if(this.index > this.maxIndex) {
+				this.index = 0;
+			}
+		}
+	}
+	
 	public void collidingBullet() {
 		for(int i = 0; i < Game.bullets.size(); i++) {
 			Entity e = Game.bullets.get(i);
@@ -108,8 +112,6 @@ public class Enemy extends Entity {
 				}
 			}
 		}
-		
-		
 	}
 	
 	public boolean isCollidingWithPlayer() {
