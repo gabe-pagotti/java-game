@@ -3,9 +3,6 @@ package com.pagotti.entities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
-import com.pagotti.graficos.Spritesheet;
 import com.pagotti.main.Game;
 import com.pagotti.world.Camera;
 import com.pagotti.world.World;
@@ -121,18 +118,30 @@ public class Player extends Entity {
 			life = 0;
 			Game.gameState = "GAME_OVER";
 		}
+		
+		updateJump();
+		updateCamera();
+	}
 
+	public void jump() {
+		if (this.z != 0 ) {
+			return;
+		}
+
+		this.jumping = true;
+	}
+
+	protected void updateJump() {
 		if(this.jumping && this.z < this.jumpingMaxHeigth) {
 			this.z += this.jumpingSpeed;
-		} else {
-			if(this.z > 0) {
-				this.z -= this.jumpingSpeed;
-			}
-	
-			this.jumping = false;
+			return;
 		}
 		
-		updateCamera();
+		this.jumping = false;
+		if(this.z > 0) {
+			this.z -= this.jumpingSpeed;
+			return;
+		} 
 	}
 	
 	public void updateCamera() {

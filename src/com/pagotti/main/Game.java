@@ -288,7 +288,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 				return;
 			}
 			
-			player.jumping = true;
+			player.jump();
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
